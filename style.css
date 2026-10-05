@@ -1,0 +1,982 @@
+/* ==========================================
+   CONTROL DE HORAS
+   APP MOBILE STYLE
+   ========================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+
+    background: #f7f9fc;
+
+    color: #1f2937;
+
+    min-height: 100vh;
+
+    padding: 24px;
+}
+
+/* ==========================================
+   ENCABEZADO
+   ========================================== */
+
+.app-header {
+    max-width: 900px;
+
+    margin: 0 auto 20px auto;
+}
+
+
+.app-titulo {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+}
+
+
+.app-icono {
+    width: 46px;
+    height: 46px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #eaf2ff;
+    color: #3b82f6;
+
+    border-radius: 14px;
+
+    font-size: 22px;
+}
+
+
+.app-titulo h1 {
+    font-size: 24px;
+
+    margin-bottom: 4px;
+}
+
+
+.app-titulo p {
+    color: #8a94a6;
+
+    font-size: 14px;
+}
+
+
+/* ==========================================
+   SELECTOR MES / AÑO
+   ========================================== */
+
+.selector-periodo {
+    max-width: 900px;
+
+    margin: 0 auto 20px auto;
+
+    background: white;
+
+    padding: 18px;
+
+    border-radius: 20px;
+
+    border: 1px solid #edf0f5;
+
+    box-shadow:
+        0 4px 16px rgba(30, 50, 80, 0.04);
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr auto;
+
+    gap: 14px;
+
+    align-items: end;
+}
+
+.campo-periodo {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+}
+
+
+.campo-periodo label {
+    font-size: 11px;
+
+    color: #8a94a6;
+
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+}
+
+.campo-periodo select,
+.campo-periodo input {
+    width: 100%;
+
+    padding: 12px 13px;
+
+    border: 1px solid #e5e9f0;
+
+    border-radius: 12px;
+
+    background: #f9fafc;
+
+    color: #1f2937;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition: 0.2s;
+}
+
+
+.campo-periodo select:focus,
+.campo-periodo input:focus {
+    border-color: #777;
+}
+
+
+.boton-borrar-mes {
+    padding: 12px 16px;
+
+    border: 1px solid #e5e90f;
+
+    border-radius: 12px;
+
+    background: #f9fafc;
+
+    color: #6b7280;
+    
+    font-size: 14xp;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+
+    transition: 0.2s;
+}
+
+.boton-borrar-mes:hover {
+    background: #fff1f2;
+    border-color: #fecdd3;
+    color: #e11d48;
+
+}
+
+
+
+
+/* ==========================================
+   RESUMEN
+   ========================================== */
+
+.resumen {
+    max-width: 900px;
+
+    margin: 0 auto 20px auto;
+
+    background: white;
+
+    color: #1f2937;
+
+    padding: 22px;
+
+    border-radius: 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    border: 1px solid #edf0f5;
+
+    box-shadow:
+        0 4px 16px rgba(30, 50, 80, 0.05);
+}
+
+.resumen > div {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+
+.resumen-label {
+    font-size: 18px;
+
+    font-weight: 700;
+}
+
+
+.resumen-descripcion {
+    font-size: 15px;
+    
+    font-weight: 600;
+
+    color: #6b7280;
+}
+
+
+#totalHoras {
+    font-size: 30px;
+
+    font-weight: 700;
+
+    color: #3b82f6;
+
+    font-weight: 700;
+}
+
+
+/* ==========================================
+   CONTENIDO
+   ========================================== */
+
+.contenido {
+    max-width: 900px;
+
+    margin: 0 auto;
+}
+
+
+.titulo-dias {
+    display: flex;
+
+    align-items: baseline;
+
+    justify-content: space-between;
+
+    margin-bottom: 12px;
+}
+
+
+.titulo-dias h2 {
+    font-size: 20px;
+}
+
+
+.titulo-dias span {
+    font-size: 12px;
+
+    color: #777;
+}
+
+
+/* ==========================================
+   TABLA
+   ========================================== */
+
+table {
+    width: 100%;
+
+    border-collapse: separate;
+
+    border-spacing: 0;
+
+    background: white;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 4px 18px rgba(0, 0, 0, 0.06);
+}
+
+
+th,
+td {
+    padding: 13px 10px;
+
+    text-align: center;
+
+    border-bottom: 1px solid #eeeeee;
+}
+
+
+th {
+    background: #fafafa;
+
+    font-size: 12px;
+
+    color: #666;
+}
+
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* ==========================================
+   HORAS
+   ========================================== */
+
+.entrada,
+.salida {
+    width: 105px;
+
+    padding: 10px;
+
+    margin: 0;
+
+    border: 1px solid #d8dce2;
+
+    border-radius: 10px;
+
+    background: #f8f9fa;
+
+    text-align: center;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+
+.horas {
+    font-weight: 700;
+}
+
+
+/* ==========================================
+   BOTÓN BORRAR DÍA
+   ========================================== */
+
+.borrar-dia {
+    width: 38px;
+
+    height: 38px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #f0f1f3;
+
+    cursor: pointer;
+
+    font-size: 16px;
+}
+
+
+/* ==========================================
+   SELECTOR DE HORA
+   ========================================== */
+
+.selector-hora {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.5);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    z-index: 9999;
+
+    padding: 20px;
+}
+
+
+.selector-hora-contenido {
+    width: 340px;
+
+    max-width: 100%;
+
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.25);
+
+    text-align: center;
+}
+
+
+.selector-hora-contenido h3 {
+    margin-bottom: 22px;
+
+    font-size: 20px;
+}
+
+
+.selector-hora-campos {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    margin-bottom: 25px;
+}
+
+
+.selector-hora-campos select {
+    padding: 12px 8px;
+
+    border: 1px solid #d8dce2;
+
+    border-radius: 10px;
+
+    background: white;
+
+    font-size: 18px;
+
+    margin: 0;
+}
+
+
+.selector-hora-campos span {
+    font-size: 22px;
+
+    font-weight: bold;
+}
+
+
+.selector-hora-botones {
+    display: flex;
+
+    gap: 10px;
+}
+
+
+.selector-hora-botones button {
+    flex: 1;
+
+    padding: 12px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    font-weight: 600;
+}
+
+
+.cancelar-hora {
+    background: #eeeeee;
+
+    color: #333;
+}
+
+
+.aceptar-hora {
+    background: #202124;
+
+    color: white;
+}
+
+
+/* ==========================================
+   MÓVIL
+   ========================================== */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 14px;
+    }
+
+
+    .app-header {
+        margin-bottom: 15px;
+    }
+
+
+    .app-icono {
+        width: 46px;
+        height: 46px;
+
+        font-size: 22px;
+    }
+
+
+    .app-titulo h1 {
+        font-size: 23px;
+    }
+
+
+    .selector-periodo {
+        grid-template-columns: 1fr 1fr;
+
+        padding: 14px;
+
+        border-radius: 17px;
+    }
+
+
+    .boton-borrar-mes {
+        grid-column: 1 / -1;
+
+        width: 100%;
+    }
+
+
+    .resumen {
+        padding: 18px;
+
+        border-radius: 17px;
+    }
+
+
+    .resumen-label {
+        font-size: 16px;
+    }
+
+
+    #totalHoras {
+        font-size: 25px;
+    }
+
+
+    .titulo-dias {
+        margin-top: 5px;
+    }
+
+
+    /* ======================================
+       TABLA → TARJETAS
+       ====================================== */
+
+    table,
+    thead,
+    tbody,
+    tr,
+    td {
+        display: block;
+    }
+
+
+    thead {
+        display: none;
+    }
+
+
+    table {
+        background: transparent;
+
+        box-shadow: none;
+    }
+
+
+    tbody {
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 12px;
+    }
+
+
+    tbody tr {
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 10px;
+
+        background: white;
+
+        padding: 16px;
+
+        border-radius: 18px;
+
+        border: 1px solid #edf0f5;
+
+        box-shadow:
+            0 4px 16px rgba(30, 50, 80, 0.05);
+
+    }
+
+
+    tbody td {
+        border: none;
+
+        padding: 5px;
+
+        text-align: left;
+    }
+
+
+    tbody td:nth-child(1) {
+        font-size: 20px;
+
+        font-weight: 700;
+    }
+
+
+    tbody td:nth-child(2) {
+        text-align: right;
+
+        font-weight: 600;
+
+        color: #777;
+    }
+
+
+    tbody td:nth-child(3)::before {
+        content: "Entrada";
+
+        display: block;
+
+        margin-bottom: 4px;
+
+        font-size: 11px;
+
+        color: #888;
+    }
+
+
+    tbody td:nth-child(4)::before {
+        content: "Salida";
+
+        display: block;
+
+        margin-bottom: 4px;
+
+        font-size: 11px;
+
+        color: #888;
+    }
+
+
+    tbody td:nth-child(5)::before {
+        content: "Trabajado";
+
+        display: block;
+
+        margin-bottom: 4px;
+
+        font-size: 11px;
+
+        color: #888;
+    }
+
+
+    tbody td:nth-child(6) {
+        display: flex;
+
+        justify-content: flex-end;
+
+        align-items: center;
+    }
+
+
+    .entrada,
+    .salida {
+        width: 100%;
+
+        padding: 11px;
+    }
+
+
+    .horas {
+        font-size: 17px;
+    }
+
+
+    .borrar-dia {
+        width: 40px;
+
+        height: 40px;
+    }
+
+}
+/* ==========================================
+   NAVEGACIÓN INFERIOR
+   ========================================== */
+
+.bottom-nav {
+    display: none;
+}
+
+
+@media (max-width: 600px) {
+
+    body {
+        padding-bottom: 95px;
+    }
+
+
+    .bottom-nav {
+
+        position: fixed;
+
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+
+        height: 66px;
+
+        background: white;
+
+        border-radius: 18px;
+
+        box-shadow:
+            0 8px 25px rgba(0, 0, 0, 0.12);
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+        z-index: 5000;
+    }
+
+
+    .nav-item {
+
+        border: none;
+
+        background: transparent;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 3px;
+
+        color: #777;
+
+        cursor: pointer;
+
+        font-family: Arial, sans-serif;
+    }
+
+
+    .nav-item span {
+
+        font-size: 20px;
+    }
+
+
+    .nav-item small {
+
+        font-size: 11px;
+    }
+
+
+    .nav-item.activo {
+
+        color: #202124;
+
+        font-weight: 700;
+    }
+
+}
+/* ==========================================
+   PANTALLAS DE LA APP
+   ========================================== */
+
+.pantalla-app {
+    max-width: 900px;
+    margin: 0 auto 20px auto;
+}
+
+
+/* La pantalla de resumen empieza oculta */
+
+#pantallaResumen {
+    display: none;
+}
+
+
+/* ==========================================
+   TARJETAS DEL RESUMEN
+   ========================================== */
+
+.resumen-extra {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 12px;
+}
+
+
+.resumen-card {
+    background: white;
+
+    padding: 20px;
+
+    border-radius: 17px;
+
+    box-shadow:
+        0 4px 18px rgba(0, 0, 0, 0.06);
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+
+.resumen-card span {
+    font-size: 13px;
+
+    color: #777;
+}
+
+
+.resumen-card strong {
+    font-size: 26px;
+}
+
+
+@media (max-width: 600px) {
+
+    .resumen-extra {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+/* ==========================================
+   MODO OSCURO
+   ========================================== */
+
+body.modo-oscuro {
+    background: #111827;
+    color: #f3f4f6;
+}
+
+body.modo-oscuro .app-titulo p {
+    color: #9ca3af;
+}
+
+body.modo-oscuro .selector-periodo,
+body.modo-oscuro .resumen,
+body.modo-oscuro table,
+body.modo-oscuro .resumen-card,
+body.modo-oscuro .ajuste-item {
+    background: #1f2937;
+    border-color: #374151;
+}
+
+body.modo-oscuro .campo-periodo select,
+body.modo-oscuro .campo-periodo input {
+    background: #111827;
+    border-color: #374151;
+    color: #f3f4f6;
+}
+
+body.modo-oscuro th {
+    background: #111827;
+    color: #9ca3af;
+}
+
+body.modo-oscuro td {
+    border-color: #374151;
+}
+
+body.modo-oscuro .titulo-dias span,
+body.modo-oscuro .resumen-card span {
+    color: #9ca3af;
+}
+
+body.modo-oscuro .entrada,
+body.modo-oscuro .salida {
+    background: #111827;
+    border-color: #374151;
+    color: #f3f4f6;
+}
+
+body.modo-oscuro .borrar-dia {
+    background: #374151;
+    color: #f3f4f6;
+}
+
+body.modo-oscuro .bottom-nav {
+    background: #1f2937;
+}
+
+body.modo-oscuro .nav-item {
+    color: #9ca3af;
+}
+
+body.modo-oscuro .nav-item.activo {
+    color: #60a5fa;
+}
+
+body.modo-oscuro .ajuste-info strong {
+    color: #f3f4f6;
+}
+
+body.modo-oscuro .ajuste-info span {
+    color: #9ca3af;
+}
+/* ==========================================
+   INTERRUPTOR DE AJUSTES
+   ========================================== */
+
+.ajuste-boton {
+    width: 48px;
+    height: 28px;
+    border: none;
+    border-radius: 20px;
+    background: #d1d5db;
+    position: relative;
+    cursor: pointer;
+    transition: 0.25s;
+    flex-shrink: 0;
+}
+
+.ajuste-boton::after {
+    content: "";
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    top: 3px;
+    left: 3px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.18);
+    transition: 0.25s;
+}
+
+.ajuste-boton.activo {
+    background: #3b82f6;
+}
+
+.ajuste-boton.activo::after {
+    transform: translateX(20px);
+}

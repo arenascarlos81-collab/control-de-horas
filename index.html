@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Control de Horas</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+    <div class="telefono">
+
+    </div>
+
+    <!-- ======================================
+         ENCABEZADO DE LA APP
+         ====================================== -->
+
+    <header class="app-header">
+
+        <div class="app-titulo">
+
+            <div class="app-icono">
+                ⏱️
+            </div>
+
+            <div>
+
+                <h1>Control de Horas</h1>
+
+                <p>
+                    Registra tu jornada
+                </p>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ======================================
+         SELECCIÓN DE MES Y AÑO
+         ====================================== -->
+
+    <section class="selector-periodo">
+
+        <div class="campo-periodo">
+
+            <label for="mes">
+                Mes
+            </label>
+
+            <select id="mes">
+
+                <option value="0">Enero</option>
+                <option value="1">Febrero</option>
+                <option value="2">Marzo</option>
+                <option value="3">Abril</option>
+                <option value="4">Mayo</option>
+                <option value="5">Junio</option>
+                <option value="6">Julio</option>
+                <option value="7">Agosto</option>
+                <option value="8">Septiembre</option>
+                <option value="9">Octubre</option>
+                <option value="10">Noviembre</option>
+                <option value="11">Diciembre</option>
+
+            </select>
+
+        </div>
+
+
+        <div class="campo-periodo">
+
+            <label for="anio">
+                Año
+            </label>
+
+            <input
+                type="number"
+                id="anio"
+            >
+
+        </div>
+
+
+        <button
+            id="borrarMes"
+            type="button"
+            class="boton-borrar-mes"
+        >
+
+            🗑️ Borrar mes
+
+        </button>
+
+    </section>
+
+
+    <!-- ======================================
+         RESUMEN
+         ====================================== -->
+
+    <section class="resumen">
+
+        <div>
+
+            <span class="resumen-label">
+                Total trabajado
+            </span>
+
+            <span class="resumen-descripcion">
+                Horas acumuladas este mes
+            </span>
+
+        </div>
+
+
+        <span id="totalHoras">
+            00:00
+        </span>
+
+    </section>
+
+
+    <!-- ======================================
+         LISTA DE DÍAS
+         ====================================== -->
+    
+    <section id="pantallaResumen" class="pantalla-app">
+
+    <div class="titulo-dias">
+
+        <h2>Resumen</h2>
+
+        <span>Resumen de tu mes</span>
+
+    </div>
+
+
+    <div class="resumen-extra">
+
+        <div class="resumen-card">
+
+            <span>Días registrados</span>
+
+            <strong id="diasRegistrados">0</strong>
+
+        </div>
+
+
+        <div class="resumen-card">
+
+            <span>Total trabajado</span>
+
+            <strong id="resumenTotalHoras">00:00</strong>
+
+        </div>
+
+        <div class="resumen-card">
+
+            <span>Promedio diario</span>
+
+            <strong id="promedioHoras">00:00</strong>
+
+        </div>
+
+
+    </div>
+
+</section>
+<section id="pantallaAjustes" class="pantalla-app">
+
+    <div class="titulo-dias">
+
+        <h2>Ajustes</h2>
+
+        <span>Personaliza tu aplicación</span>
+
+    </div>
+
+    <div class="ajustes-lista">
+
+        <div class="ajuste-item">
+
+            <div class="ajuste-icono">
+                🌓
+            </div>
+
+            <div class="ajuste-info">
+
+                <strong>Modo oscuro</strong>
+
+                <span>Cambiar el aspecto de la aplicación</span>
+
+            </div>
+
+            <button
+                type="button"
+                id="modoOscuro"
+                class="ajuste-boton"
+            >
+                OFF
+            </button>
+
+        </div>
+
+
+        <div class="ajuste-item">
+
+    <div class="ajuste-icono">
+        🕐
+    </div>
+
+    <div class="ajuste-info">
+
+        <strong>Formato de hora</strong>
+
+        <span id="descripcionFormatoHora">
+            Usar formato de 12 horas
+        </span>
+
+    </div>
+
+    <button
+        type="button"
+        id="formatoHora"
+        class="ajuste-boton-formato"
+    >
+        12 h
+    </button>
+
+</div>
+
+
+        <div class="ajuste-item">
+
+            <div class="ajuste-icono">
+                💾
+            </div>
+
+            <div class="ajuste-info">
+
+                <strong>Datos guardados</strong>
+
+                <span>Los registros se guardan automáticamente</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+    <main class="contenido">
+
+        <div class="titulo-dias">
+
+            <h2>
+                Mi jornada
+            </h2>
+
+            <span>
+                Entrada y salida
+            </span>
+
+        </div>
+
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Día
+                    </th>
+
+                    <th>
+                        Día de la semana
+                    </th>
+
+                    <th>
+                        Entrada
+                    </th>
+
+                    <th>
+                        Salida
+                    </th>
+
+                    <th>
+                        Horas trabajadas
+                    </th>
+
+                    <th>
+                        Acción
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="tablaDias"></tbody>
+
+        </table>
+
+    </main>
+    <nav class="bottom-nav">
+
+    <button type="button" class="nav-item activo">
+
+        <span>📅</span>
+
+        <small>Jornada</small>
+
+    </button>
+
+
+    <button type="button" class="nav-item">
+
+        <span>📊</span>
+
+        <small>Resumen</small>
+
+    </button>
+
+
+    <button type="button" class="nav-item">
+
+        <span>⚙️</span>
+
+        <small>Ajustes</small>
+
+    </button>
+
+</nav>
+
+</div>
+
+
+
+    <!-- ======================================
+         JAVASCRIPT
+         ====================================== -->
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>
